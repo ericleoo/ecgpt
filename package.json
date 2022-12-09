@@ -1,0 +1,26 @@
+{
+  "name": "tg-chatgpt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./ECGPTBot.js",
+    "dev": "node ./ECGPTBot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv-safe": "^8.1.2",
+    "dotenv": "^16.0.3",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "chatgpt": "^2.0.5",
+    "grammy": "^1.12.0"
+  }
+}
