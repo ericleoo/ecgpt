@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 //Create a new bot
-const bot = new Bot("5733310708:AAHzFw8QZET4g60jZ79otUC1UJMxXuLkfZA");
+const bot = new Bot(process.env.BOT_TOKEN);
 
 const api = {};
 const conversation = {};
