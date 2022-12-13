@@ -16,7 +16,7 @@
     "dotenv": "^16.0.3"
   },
   "dependencies": {
-    "chatgpt": "^2.0.5",
+    "chatgpt": "^2.3.0",
     "grammy": "^1.12.0"
   }
 }

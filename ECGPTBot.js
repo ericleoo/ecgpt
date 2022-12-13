@@ -1,7 +1,12 @@
 import { Bot, InlineKeyboard } from "grammy";
-import { ChatGPTAPI } from "chatgpt";
+import { ChatGPTAPI, getOpenAIAuth } from 'chatgpt';
 import dotenv from "dotenv";
 dotenv.config();
+
+const openAIAuth = await getOpenAIAuth({
+  email: process.env.OPENAI_EMAIL,
+  password: process.env.OPENAI_PASSWORD
+});
 
 //Create a new bot
 const bot = new Bot(process.env.BOT_TOKEN);
@@ -12,7 +17,7 @@ const conversation = {};
 //This handler sends a menu with the inline buttons we pre-assigned above
 bot.command("restart", async (ctx) => {
   let name = ctx.from.username;
-  api[name] = new ChatGPTAPI({ sessionToken: process.env.SESSION_TOKEN });
+  api[name] = new ChatGPTAPI({ ...openAIAuth });
   await api[name].ensureAuth();
   conversation[name] = api[name].getConversation();
 });
@@ -29,7 +34,7 @@ bot.on("message", async (ctx) => {
 
   let name = ctx.from.username;
   if(!(name in api)){
-    api[name] = new ChatGPTAPI({ sessionToken: process.env.SESSION_TOKEN });
+    api[name] = new ChatGPTAPI({ ...openAIAuth });
     await api[name].ensureAuth();
     conversation[name] = api[name].getConversation();
   }
