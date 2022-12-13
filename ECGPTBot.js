@@ -35,8 +35,19 @@ bot.on("message", async (ctx) => {
   }
 
   if(ctx.message.text){
-    let response = await conversation[name].sendMessage(ctx.message.text);
-    await ctx.reply(response, {parse_mode: "Markdown"});
+    let response = "";
+    try{
+      response = await conversation[name].sendMessage(ctx.message.text);
+    }
+    catch (err) {
+      response = err.stack;
+    }
+    try{
+      await ctx.reply(response, {parse_mode: "Markdown"});
+    }
+    catch (err) {
+      await ctx.reply(response, {});
+    }
   }
 });
 
